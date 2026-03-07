@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashionable Finds | Curated Noir Collection</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-100: #f5f5f5;
+            --gray-200: #eeeeee;
+            --gray-800: #222222;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION & LOGO --- */
+        nav {
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.95);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: var(--black);
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(40px, 8vw, 80px);
+            line-height: 1;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* --- CATEGORY TABS --- */
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 20px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 89px;
+            background: var(--white);
+            z-index: 999;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .cat-btn {
+            background: none;
+            border: 1px solid var(--black);
+            padding: 10px 24px;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* --- PRODUCT GRID --- */
+        .container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .category-section {
+            display: none; /* Hidden by default, toggled by JS */
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .category-section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+            text-transform: capitalize;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 40px 20px;
+        }
+
+        .product-card {
+            group;
+            text-decoration: none;
+            color: inherit;
+        }
+
+}
+        .image-wrapper {
+            position: relative;
+            aspect-ratio: 3/4;
+            background: var(--gray-100);
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            text-align: left;
+        }
+
+        .product-info h3 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .product-info p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .btn-shop {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: 1px solid var(--black);
+        }
+/* SECTION */
+.category-section {
+    padding: 40px 5%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* GRID LAYOUT */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* CARD DESIGN */
+.product-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+/* IMAGE */
+.image-wrapper {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* TEXT */
+.product-info {
+    padding: 15px;
+}
+
+.product-info h3 {
+    margin-bottom: 10px;
+}
+
+.product-info p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* BUTTON */
+.btn-shop {
+    display: inline-block;
+    padding: 8px 14px;
+    background: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+        .btn-shop:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* --- FOOTER & DISCLOSURE --- */
+        .disclosure {
+            padding: 40px 20px;
+            background: var(--gray-100);
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        footer a { color: var(--white); margin: 0 15px; text-decoration: none; font-size: 13px; opacity: 0.6; }
+        footer a:hover { opacity: 1; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .hero h1 { font-size: 36px; }
+        }
+        /* TABLET */
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* SMALL TABLET */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Fashionable Finds</div>
+    </nav>
+
+    <section class="hero">
+        <h1>Essential Styles</h1>
+        <p>A curated selection of high-performance and luxury essentials.</p>
+    </section>
+
+    <div class="category-nav">
+        <button class="cat-btn active" onclick="showCategory('streetwear')">Streetwear</button>
+        <button class="cat-btn" onclick="showCategory('gym')">Gym & Fitness</button>
+        <button class="cat-btn" onclick="showCategory('accessories')">Accessories</button>
+    </div>
+
+    <div class="container">
+        
+        <section id="streetwear" class="category-section active">
+            <h2 class="section-title">The Street Edit</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="image-wrapper">
+                        <img src="https://m.media-amazon.com/images/I/51yhuOTD-xL._SX695_.jpg" alt="Product">
+                    </div>
+                    <div class="product-info">
+                        <h3>White Sneaker</h3>
+                        <p>Trendy Casual Lace Up Sneaker, Men Casual Shoes for MenSports Shoes for MenRunning Shoes for MenSports ShoesWalking Shoes for MenGym Shoes for Men & Boys(186) M White</p>
+                        <a href="https://amzn.to/4rOjwQX" class="btn-shop" target="_blank">Shop Deal</a>
+                    </div>
+                    
+                    
+                </div>
+                
+                </div>
+        </section>
+
+        <section id="gym" class="category-section">
+            <h2 class="section-title">Performance Gear</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?auto=format&fit=crop&w=500&q=80" alt="Gym">
+                    </div>
+                    <div class="product-info">
+                        <h3>Seamless Compression Top</h3>
+                        <p>Breathable pro-fabric.</p>
+                        <a href="#" class="btn-shop">Shop Deal</a>
+                    </div>
+                </div>
+                </div>
+        </section>
+
+        <section id="accessories" class="category-section">
+            <h2 class="section-title">The Finisher</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80" alt="Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3>Minimalist Quartz Watch</h3>
+                        <p>Matte black hardware.</p>
+                        <a href="#" class="btn-shop">Shop Deal</a>
+                    </div>
+                </div>
+                </div>
+        </section>
+
+    </div>
+
+    <section class="disclosure">
+        AFFILIATE DISCLOSURE: WE MAY EARN A SMALL COMMISSION ON PURCHASES MADE VIA LINKS ON THIS PAGE.
+    </section>
+
+<footer>
+    <div style="margin-bottom: 20px;">
+        <a href="#" target="_blank">Shop</a>
+        <a href="https://www.instagram.com/puttappu_ecom?igsh=MWduMzBobXZtNXo4bA==" target="_blank">Instagram</a>
+        <a href="#" target="_blank">Privacy</a>
+        <a href="#" target="_blank">Contact</a>
+    </div>
+    <p>© 2026 FASHIONABLE FINDS. ALL RIGHTS RESERVED.</p>
+</footer>
+
+    <script>
+        function showCategory(catId) {
+            // Hide all sections
+            document.querySelectorAll('.category-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Remove active class from buttons
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(catId).classList.add('active');
+            // Set button to active
+            event.currentTarget.classList.add('active');
+
+            // Optional: Smooth scroll to top of grid
+            window.scrollTo({ top: 500, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
