@@ -1,472 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashionable Finds | Curated Noir Collection</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fashionable Finds | Curated Noir Collection</title>
 
-    <style>
-        :root {
-            --black: #000000;
-            --white: #ffffff;
-            --gray-100: #f5f5f5;
-            --gray-200: #eeeeee;
-            --gray-800: #222222;
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<style>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--white);
-            color: var(--black);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* --- NAVIGATION & LOGO --- */
-        nav {
-            padding: 30px;
-            text-align: center;
-            border-bottom: 1px solid var(--gray-200);
-            position: sticky;
-            top: 0;
-            background: rgba(255,255,255,0.95);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: var(--black);
-            color: var(--white);
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(40px, 8vw, 80px);
-            line-height: 1;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        /* --- CATEGORY TABS --- */
-        .category-nav {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 40px 20px;
-            flex-wrap: wrap;
-            position: sticky;
-            top: 89px;
-            background: var(--white);
-            z-index: 999;
-            border-bottom: 1px solid var(--gray-100);
-        }
-
-        .cat-btn {
-            background: none;
-            border: 1px solid var(--black);
-            padding: 10px 24px;
-            font-weight: 600;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .cat-btn.active, .cat-btn:hover {
-            background: var(--black);
-            color: var(--white);
-        }
-
-        /* --- PRODUCT GRID --- */
-        .container {
-            max-width: 1400px;
-            margin: auto;
-            padding: 60px 20px;
-        }
-
-        .category-section {
-            display: none; /* Hidden by default, toggled by JS */
-            animation: fadeIn 0.8s ease forwards;
-        }
-
-        .category-section.active {
-            display: block;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            margin-bottom: 40px;
-            text-align: center;
-            text-transform: capitalize;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 40px 20px;
-        }
-
-        .product-card {
-            group;
-            text-decoration: none;
-            color: inherit;
-        }
-
-}
-        .image-wrapper {
-            position: relative;
-            aspect-ratio: 3/4;
-            background: var(--gray-100);
-            overflow: hidden;
-            object-fit: cover; 
-            margin-bottom: 15px;
-        }
-
-        .image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .product-card:hover .image-wrapper img {
-            transform: scale(1.05);
-        }
-
-        .product-info {
-            text-align: left;
-        }
-
-        .product-info h3 {
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-
-        .product-info p {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 12px;
-        }
-
-        .btn-shop {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background: var(--black);
-            color: var(--white);
-            text-align: center;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            border: 1px solid var(--black);
-        }
-/* SECTION */
-.category-section {
-    padding: 40px 5%;
+/* ===== ROOT ===== */
+:root{
+--black:#000;
+--white:#fff;
+--gray:#f5f5f5;
+--transition:all .35s ease;
 }
 
-.section-title {
-    text-align: center;
-    margin-bottom: 30px;
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Inter',sans-serif;
+background:#fff;
+color:#000;
+overflow-x:hidden;
 }
 
-/* GRID LAYOUT */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+/* ===== NAV ===== */
+nav{
+padding:25px;
+text-align:center;
+border-bottom:1px solid #eee;
+position:sticky;
+top:0;
+background:#fff;
+z-index:1000;
 }
 
-/* CARD DESIGN */
-.product-card {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: 0.3s;
+.logo{
+font-family:'Playfair Display',serif;
+font-size:26px;
+font-weight:700;
 }
 
-.product-card:hover {
-    transform: translateY(-5px);
+/* ===== HERO ===== */
+.hero{
+height:60vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:#000;
+color:#fff;
+padding:0 20px;
 }
 
-/* IMAGE */
-.image-wrapper {
-  width: 100%;
-  aspect-ratio: 1 / 1;   /* perfect square cards */
-  overflow: hidden;
-  background: #fff;
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:clamp(36px,8vw,70px);
+margin-bottom:15px;
+font-style:italic;
 }
 
-.image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;   /* NO cropping */
-  display: block;
+/* ===== CATEGORY NAV ===== */
+.category-nav{
+display:flex;
+justify-content:center;
+gap:15px;
+padding:25px 20px;
+flex-wrap:wrap;
+border-bottom:1px solid #eee;
+position:sticky;
+top:82px;
+background:#fff;
+z-index:999;
 }
 
-/* TEXT */
-.product-info {
-    padding: 15px;
+/* BASE */
+.cat-btn{
+border:1px solid #000;
+padding:10px 22px;
+background:#fff;
+cursor:pointer;
+font-weight:600;
+text-transform:uppercase;
+font-size:12px;
+border-radius:30px;
+
+position:relative;
+overflow:hidden;
+
+transition:color .35s ease, transform .25s ease;
 }
 
-.product-info h3 {
-    margin-bottom: 10px;
+/* SLIDE FILL EFFECT */
+.cat-btn::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:0%;
+height:100%;
+background:#000;
+z-index:-1;
+
+transition:width .35s ease;
 }
 
-.product-info p {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 15px;
+/* HOVER */
+.cat-btn:hover::before{
+width:100%;
 }
 
-/* BUTTON */
-.btn-shop {
-    display: inline-block;
-    padding: 8px 14px;
-    background: black;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-        .btn-shop:hover {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        /* --- FOOTER & DISCLOSURE --- */
-        .disclosure {
-            padding: 40px 20px;
-            background: var(--gray-100);
-            text-align: center;
-            font-size: 12px;
-            color: #888;
-            letter-spacing: 1px;
-        }
-
-        footer {
-            background: var(--black);
-            color: var(--white);
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        footer a { color: var(--white); margin: 0 15px; text-decoration: none; font-size: 13px; opacity: 0.6; }
-        footer a:hover { opacity: 1; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 600px) {
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .hero h1 { font-size: 36px; }
-        }
-        /* TABLET */
-@media (max-width: 1024px) {
-    .product-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+.cat-btn:hover{
+color:#fff;
+transform:translateY(-2px);
 }
 
-/* SMALL TABLET */
-@media (max-width: 768px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* ACTIVE */
+.cat-btn.active{
+background:#000;
+color:#fff;
 }
 
-/* MOBILE */
-@media (max-width: 480px) {
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
+.cat-btn.active,
+.cat-btn:hover{
+background:#000;
+color:#fff;
 }
-    </style>
+
+/* ===== CONTAINER ===== */
+.container{
+max-width:1300px;
+margin:auto;
+padding:50px 20px;
+}
+
+/* ===== CATEGORY ===== */
+.category-section{display:none;}
+.category-section.active{display:block;}
+
+.section-title{
+font-family:'Playfair Display',serif;
+font-size:30px;
+text-align:center;
+margin-bottom:35px;
+}
+
+/* ===== GRID ===== */
+.product-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:22px;
+}
+
+/* ===== CARD ===== */
+.product-card{
+background:#fff;
+border-radius:14px; /* rounded */
+overflow:hidden;
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+transition:all .35s ease;
+}
+
+.product-card:hover{
+transform:translateY(-8px) scale(1.02);
+box-shadow:0 12px 25px rgba(0,0,0,.15);
+}
+
+/* ===== IMAGE ===== */
+.image-wrapper{
+width:100%;
+aspect-ratio:1/1;
+overflow:hidden;
+background:#fff;
+}
+
+.image-wrapper img{
+width:100%;
+height:100%;
+object-fit:contain;
+display:block;
+}
+.product-card:hover img{
+transform:scale(1.08);
+}
+
+/* ===== TEXT ===== */
+.product-info{padding:14px;}
+
+.product-info h3{
+font-size:14px;
+margin-bottom:6px;
+}
+
+.product-info p{
+font-size:13px;
+color:#555;
+margin-bottom:12px;
+}
+
+/* ===== BUTTON ===== */
+.btn-shop{
+display:block;
+text-align:center;
+padding:10px;
+border-radius:8px;
+background:#000;
+color:#fff;
+text-decoration:none;
+font-weight:700;
+transition:all .3s ease;
+}
+
+.btn-shop:hover{
+background:#fff;
+color:#000;
+border:1px solid #000;
+transform:translateY(-2px);
+}
+
+/* ===== FOOTER ===== */
+.disclosure{
+padding:35px;
+background:#f5f5f5;
+text-align:center;
+font-size:12px;
+color:#666;
+}
+
+footer{
+background:#000;
+color:#fff;
+padding:50px 20px;
+text-align:center;
+}
+
+footer a{
+color:#fff;
+margin:0 12px;
+text-decoration:none;
+opacity:.6;
+}
+
+footer a:hover{opacity:1;}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+.product-grid{grid-template-columns:repeat(3,1fr);}
+}
+
+@media(max-width:768px){
+.product-grid{grid-template-columns:repeat(2,1fr);}
+}
+
+@media(max-width:480px){
+.product-grid{grid-template-columns:1fr;}
+}
+
+</style>
 </head>
+
 <body>
 
-    <nav>
-        <div class="logo">Fashionable Finds</div>
-    </nav>
+<nav>
+<div class="logo">Fashionable Finds</div>
+</nav>
 
-    <section class="hero">
-        <h1>Essential Styles</h1>
-        <p>A curated selection of high-performance and luxury essentials.</p>
-    </section>
+<section class="hero">
+<h1>Essential Styles</h1>
+<p>A curated selection of high-performance and luxury essentials.</p>
+</section>
 
-    <div class="category-nav">
-        <button class="cat-btn active" onclick="showCategory('trend')">Trending Products</button>
-        <button class="cat-btn" onclick="showCategory('streetwear')">Streetwear</button>
-        <button class="cat-btn" onclick="showCategory('gym')">Gym & Fitness</button>
-        <button class="cat-btn" onclick="showCategory('accessories')">Accessories</button>
-    </div>
+<div class="category-nav">
+<button class="cat-btn active" onclick="showCategory(event,'trend')">Trending</button>
+<button class="cat-btn" onclick="showCategory(event,'streetwear')">Streetwear</button>
+<button class="cat-btn" onclick="showCategory(event,'gym')">Gym</button>
+<button class="cat-btn" onclick="showCategory(event,'accessories')">Accessories</button>
+</div>
 
-    <div class="container">
-        <section id="trend" class="category-section active">
-            <h2 class="section-title">The Trending Products</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="image-wrapper">
-                        <img src="https://m.media-amazon.com/images/I/61rnpIExlUL._SX569_.jpg" alt="Product">
-                    </div>
-                    <div class="product-info">
-                        <h3>Devil Will Cry</h3>
-                        <p>Devil Will Cry Defence Emergency Alarm in Keychain for Women Safety | SOS Alarm</p>
-                        <a href="https://amzn.to/4cv8Lhu" class="btn-shop" target="_blank">Shop Deal</a>
-                    </div>
-                    
-                    
-                </div>
-                <div class="product-card">
-                    <div class="image-wrapper">
-                        <img src="https://m.media-amazon.com/images/I/6109dvM8hfL._SL1500_.jpg" alt="Product">
-                    </div>
-                    <div class="product-info">
-                        <h3>Purple Whitening Toothpaste</h3>
-                        <p>Perfora Purple Whitening Toothpaste-125g | Purple Toothpaste For Teeth Whitening</p>
-                        <a href="https://amzn.to/4s5hhc8" class="btn-shop" target="_blank">Shop Deal</a>
-                    </div>
-                    
-                    
-                </div>
-                
-                </div>
-        </section>
-        <section id="streetwear" class="category-section active">
-            <h2 class="section-title">The Street Edit</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="image-wrapper">
-                        <img src="https://m.media-amazon.com/images/I/51yhuOTD-xL._SX695_.jpg" alt="Product">
-                    </div>
-                    <div class="product-info">
-                        <h3>White Sneaker</h3>
-                        <p>Trendy Casual Lace Up Sneaker, Men Casual Shoes for MenSports Shoes for MenRunning Shoes for MenSports ShoesWalking Shoes for MenGym Shoes for Men & Boys(186) M White</p>
-                        <a href="https://amzn.to/4rOjwQX" class="btn-shop" target="_blank">Shop Deal</a>
-                    </div>
-                    
-                    
-                </div>
-                
-                </div>
-        </section>
-        <section id="streetwear" class="category-section active">
-            <h2 class="section-title">The Street Edit</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="image-wrapper">
-                        <img src="https://m.media-amazon.com/images/I/51yhuOTD-xL._SX695_.jpg" alt="Product">
-                    </div>
-                    <div class="product-info">
-                        <h3>White Sneaker</h3>
-                        <p>Trendy Casual Lace Up Sneaker, Men Casual Shoes for MenSports Shoes for MenRunning Shoes for MenSports ShoesWalking Shoes for MenGym Shoes for Men & Boys(186) M White</p>
-                        <a href="https://amzn.to/4rOjwQX" class="btn-shop" target="_blank">Shop Deal</a>
-                    </div>
-                    
-                    
-                </div>
-                
-                </div>
-        </section>
-        <section id="gym" class="category-section">
-            <h2 class="section-title">Performance Gear</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?auto=format&fit=crop&w=500&q=80" alt="Gym">
-                    </div>
-                    <div class="product-info">
-                        <h3>Seamless Compression Top</h3>
-                        <p>Breathable pro-fabric.</p>
-                        <a href="#" class="btn-shop">Shop Deal</a>
-                    </div>
-                </div>
-                </div>
-        </section>
+<div class="container">
 
-        <section id="accessories" class="category-section">
-            <h2 class="section-title">The Finisher</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80" alt="Watch">
-                    </div>
-                    <div class="product-info">
-                        <h3>Minimalist Quartz Watch</h3>
-                        <p>Matte black hardware.</p>
-                        <a href="#" class="btn-shop">Shop Deal</a>
-                    </div>
-                </div>
-                </div>
-        </section>
+<!-- ===== TREND ===== -->
+<section id="trend" class="category-section active">
+<h2 class="section-title">Trending Products</h2>
 
-    </div>
+<div class="product-grid">
 
-    <section class="disclosure">
-        AFFILIATE DISCLOSURE: WE MAY EARN A SMALL COMMISSION ON PURCHASES MADE VIA LINKS ON THIS PAGE.
-    </section>
+<div class="product-card">
+<div class="image-wrapper">
+<img src="https://m.media-amazon.com/images/I/6109dvM8hfL._SL1500_.jpg">
+</div>
+<div class="product-info">
+<h3>Purple Whitening Toothpaste</h3>
+<p>Perfora Purple Whitening Toothpaste-125g</p>
+<a href="https://amzn.to/4s5hhc8" target="_blank" class="btn-shop">Shop Deal</a>
+</div>
+</div>
+
+<div class="product-card">
+<div class="image-wrapper">
+<img src="https://m.media-amazon.com/images/I/61rnpIExlUL._SX569_.jpg">
+</div>
+<div class="product-info">
+<h3>SOS Safety Alarm</h3>
+<p>Emergency Keychain Alarm for Safety</p>
+<a href="https://amzn.to/4cv8Lhu" target="_blank" class="btn-shop">Shop Deal</a>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ===== STREETWEAR ===== -->
+<section id="streetwear" class="category-section">
+<h2 class="section-title">Streetwear</h2>
+
+<div class="product-grid">
+<div class="product-card">
+<div class="image-wrapper">
+<img src="https://m.media-amazon.com/images/I/51yhuOTD-xL._SX695_.jpg">
+</div>
+<div class="product-info">
+<h3>White Sneaker</h3>
+<p>Casual Lace-Up Everyday Sneaker</p>
+<a href="https://amzn.to/4rOjwQX" target="_blank" class="btn-shop">Shop Deal</a>
+</div>
+</div>
+</div>
+
+</section>
+
+<!-- ===== GYM ===== -->
+<section id="gym" class="category-section">
+<h2 class="section-title">Gym Gear</h2>
+<div class="product-grid">
+<div class="product-card">
+<div class="image-wrapper">
+<img src="https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb">
+</div>
+<div class="product-info">
+<h3>Compression Top</h3>
+<p>Breathable training wear</p>
+<a href="#" class="btn-shop">Shop Deal</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===== ACCESSORIES ===== -->
+<section id="accessories" class="category-section">
+<h2 class="section-title">Accessories</h2>
+<div class="product-grid">
+<div class="product-card">
+<div class="image-wrapper">
+<img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30">
+</div>
+<div class="product-info">
+<h3>Minimal Watch</h3>
+<p>Matte black finish</p>
+<a href="#" class="btn-shop">Shop Deal</a>
+</div>
+</div>
+</div>
+</section>
+
+</div>
+
+<section class="disclosure">
+AFFILIATE DISCLOSURE: WE MAY EARN COMMISSION FROM LINKS.
+</section>
 
 <footer>
-    <div style="margin-bottom: 20px;">
-        <a href="#" target="_blank">Shop</a>
-        <a href="https://www.instagram.com/puttappu_ecom?igsh=MWduMzBobXZtNXo4bA==" target="_blank">Instagram</a>
-        <a href="#" target="_blank">Privacy</a>
-        <a href="#" target="_blank">Contact</a>
-    </div>
-    <p>© 2026 FASHIONABLE FINDS. ALL RIGHTS RESERVED.</p>
+<div>
+<a href="#">Shop</a>
+<a href="#">Instagram</a>
+<a href="#">Privacy</a>
+<a href="#">Contact</a>
+</div>
+<p>© 2026 FASHIONABLE FINDS</p>
 </footer>
 
-    <script>
-        function showCategory(catId) {
-            // Hide all sections
-            document.querySelectorAll('.category-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            // Remove active class from buttons
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Show selected section
-            document.getElementById(catId).classList.add('active');
-            // Set button to active
-            event.currentTarget.classList.add('active');
+<script>
 
-            // Optional: Smooth scroll to top of grid
-            window.scrollTo({ top: 500, behavior: 'smooth' });
-        }
-    </script>
+function showCategory(e,id){
+
+document.querySelectorAll('.category-section')
+.forEach(sec=>sec.classList.remove('active'));
+
+document.querySelectorAll('.cat-btn')
+.forEach(btn=>btn.classList.remove('active'));
+
+document.getElementById(id).classList.add('active');
+e.currentTarget.classList.add('active');
+
+window.scrollTo({top:450,behavior:'smooth'});
+
+}
+
+</script>
 
 </body>
 </html>
